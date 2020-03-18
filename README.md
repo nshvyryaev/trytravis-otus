@@ -3,8 +3,8 @@ nshvyryaev Infra repository
 
 ## Infrastructure
 There are two instances:
-* bastion_IP = 35.189.220.151
-* someinternalhost_IP = 10.132.0.3
+bastion_IP = 35.189.220.151
+someinternalhost_IP = 10.132.0.3
 
 Only bastion has external IP.
 
