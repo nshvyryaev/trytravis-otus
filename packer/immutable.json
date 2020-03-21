@@ -8,13 +8,13 @@
     {
       "type": "googlecompute",
       "project_id": "{{ user `project_id` }}",
-      "image_name": "reddit-base-{{timestamp}}",
-      "image_family": "reddit-base",
+      "image_name": "reddit-full-{{timestamp}}",
+      "image_family": "reddit-full",
       "source_image_family": "{{ user `source_image_family` }}",
       "zone": "europe-west1-b",
       "ssh_username": "appuser",
       "machine_type": "{{ user `machine_type` }}",
-      "image_description": "Reddit application fried image",
+      "image_description": "Reddit application baked image",
       "disk_type": "pd-standard",
       "disk_size": 10,
       "tags": [
@@ -24,13 +24,13 @@
   ],
   "provisioners": [
     {
-      "type": "shell",
-      "script": "scripts/install_ruby.sh",
-      "execute_command": "sudo {{.Path}}"
+      "type": "file",
+      "source": "files/puma.service",
+      "destination": "puma.service"
     },
     {
       "type": "shell",
-      "script": "scripts/install_mongodb.sh",
+      "script": "scripts/deploy.sh",
       "execute_command": "sudo {{.Path}}"
     }
   ]
