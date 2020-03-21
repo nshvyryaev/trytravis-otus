@@ -37,7 +37,7 @@ signed for `35-189-220-151.sslip.io` domain
 ## HW4 Cloud deploy
 ### Command to create instance with startup script
 Execute from project root.
-``` bash
+```bash
 gcloud compute instances create reddit-app-auto\
   --boot-disk-size=10GB \
   --image-family ubuntu-1604-lts \
@@ -46,4 +46,16 @@ gcloud compute instances create reddit-app-auto\
   --tags puma-server \
   --restart-on-failure \
   --metadata-from-file startup-script=startup_script.sh
+```
+
+### Command to create firewall rule
+```bash
+gcloud compute firewall-rules create default-puma-server \
+    --direction=INGRESS \
+    --priority=1000 \
+    --network=default \
+    --action=ALLOW \
+    --rules=tcp:9292 \
+    --source-ranges=0.0.0.0/0 \
+    --target-tags=puma-server
 ```
