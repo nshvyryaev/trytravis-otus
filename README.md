@@ -35,6 +35,9 @@ Pritunl web admin panel has valid TLS certificate
 signed for `35-189-220-151.sslip.io` domain
 
 ## HW4 Cloud deploy
+### Variables for testing
+testapp_IP = 35.240.45.64
+testapp_port = 9292
 ### Command to create instance with startup script
 Execute from project root.
 ```bash
