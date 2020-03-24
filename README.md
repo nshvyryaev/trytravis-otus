@@ -62,3 +62,16 @@ gcloud compute firewall-rules create default-puma-server \
     --source-ranges=0.0.0.0/0 \
     --target-tags=puma-server
 ```
+
+## HW5 Packer base
+### Creating images with packer
+Run commands from directory `packer`. Use `variables.json.example` to create files with variables.
+#### Base image without application
+Create `variables.json` file with required parameters.
+Run `packer build -var-file=variables.json ubuntu16.json`
+#### Full image with application
+Create `immutable_variables.json` file with required parameters.
+Run `packer build -var-file=immutable_variables.json immutable.json`
+#### Create an instance using image
+Run `create-reddit-vm.sh` to create an instance from full image.
+No more actions needed - server will operate as soon as an instance will be ready.
