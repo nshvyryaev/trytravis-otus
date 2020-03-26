@@ -10,7 +10,7 @@ provider "google" {
 
 
 resource "google_compute_instance" "app" {
-  count = var.instance_count
+  count        = var.instance_count
   name         = "reddit-app${count.index}"
   machine_type = "g1-small"
   zone         = "europe-west1-b"
@@ -56,7 +56,7 @@ module "gce-lb-fr" {
   name         = "group1-lb"
   service_port = 9292
   target_tags  = ["reddit-app"]
-  instances = [for instance in google_compute_instance.app : instance.self_link]
+  instances    = [for instance in google_compute_instance.app : instance.self_link]
 }
 
 resource "google_compute_firewall" "firewall_puma" {
