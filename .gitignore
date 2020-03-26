@@ -1,3 +1,8 @@
 .idea
 packer/variables.json
 packer/immutable_variables.json
+*.tfstate
+*.tfstate.*.backup
+*.tfstate.backup
+*.tfvars
+.terraform/
