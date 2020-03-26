@@ -8,8 +8,10 @@ provider "google" {
   region  = var.region
 }
 
+
 resource "google_compute_instance" "app" {
-  name         = "reddit-app"
+  count = var.instance_count
+  name         = "reddit-app${count.index}"
   machine_type = "g1-small"
   zone         = "europe-west1-b"
   tags         = ["reddit-app"]
@@ -48,6 +50,15 @@ resource "google_compute_instance" "app" {
   }
 }
 
+module "gce-lb-fr" {
+  source       = "./loadbalancer"
+  region       = var.region
+  name         = "group1-lb"
+  service_port = 9292
+  target_tags  = ["reddit-app"]
+  instances = [for instance in google_compute_instance.app : instance.self_link]
+}
+
 resource "google_compute_firewall" "firewall_puma" {
   name = "allow-puma-default"
   # Название сети, в которой действует правило
@@ -61,4 +72,9 @@ resource "google_compute_firewall" "firewall_puma" {
   source_ranges = ["0.0.0.0/0"]
   # Правило применимо для инстансов с перечисленными тэгами
   target_tags = ["reddit-app"]
+}
+
+resource "google_compute_project_metadata_item" "ssh-keys" {
+  key   = "ssh-keys"
+  value = join("\n", [for name in ["1", "2", "3"] : "appuser${name}:${chomp(file(var.public_key_path))}"])
 }
