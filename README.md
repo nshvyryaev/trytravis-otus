@@ -75,3 +75,18 @@ Run `packer build -var-file=immutable_variables.json immutable.json`
 #### Create an instance using image
 Run `create-reddit-vm.sh` to create an instance from full image.
 No more actions needed - server will operate as soon as an instance will be ready.
+
+## HW6 Terraform 1
+Terraform configuration is added to the project. See `terraform` directory for configuration details.
+Use `terraform.tfvars.example` as an example of what can be configured via variables.
+### Adding multiple SSH keys
+#### Found issues
+SSH keys are stored in single variable 'ssh-keys', that means that Terraform:
+1. Removes manually added keys
+2. You need to concatenate username into value separating key and user with colon
+3. You need to concatenate multiple keys into single value and separate them with new line
+### Load balancing
+Added using Google module `https://github.com/terraform-google-modules/terraform-google-lb`.
+Code was copied to add instances to targets pool without auto scaling.
+
+Use `instance_count` variable to set desired count of instances in load balancer targets pool.
