@@ -90,3 +90,8 @@ Added using Google module `https://github.com/terraform-google-modules/terraform
 Code was copied to add instances to targets pool without auto scaling.
 
 Use `instance_count` variable to set desired count of instances in load balancer targets pool.
+
+
+## HW7 Terraform 2
+Terraform configuration is split into separate modules. Stage and prod environments created.
+SSH IP limitation added to the project. External static IP added.
