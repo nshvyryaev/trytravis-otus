@@ -95,3 +95,15 @@ Use `instance_count` variable to set desired count of instances in load balancer
 ## HW7 Terraform 2
 Terraform configuration is split into separate modules. Stage and prod environments created.
 SSH IP limitation added to the project. External static IP added.
+### Found issues
+1. `SweetOps/storage-bucket/google` doesn't work with defaults. Specifying parameter "location" has fixed the issue.
+
+### GCS backend
+Terraform can use remote backend to store its state. This allows work together on the same project.
+Running multiple apply command simultaneously is restricted, state is locked.
+
+### Provisioning in modules
+You should use absolute path in module in order to refer files located in module.
+`${path.module}` will help.
+Mongodb listens only on localhost by default. To allow external connections you need to add
+DB host internal IP in `bindIp` config variable.

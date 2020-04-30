@@ -26,7 +26,9 @@ resource "google_compute_instance" "app" {
   }
 
   provisioner "file" {
-    source      = "${path.module}/files/puma.service"
+    content      = templatefile("${path.module}/files/puma.service.tpl", {
+      database_url = var.db_internal_ip
+    })
     destination = "/tmp/puma.service"
   }
 

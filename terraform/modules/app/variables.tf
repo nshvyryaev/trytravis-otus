@@ -2,7 +2,6 @@ variable zone {
   description = "Zone"
 }
 variable public_key_path {
-  # Описание переменной
   description = "Path to the public key used for ssh access"
 }
 variable app_disk_image {
@@ -10,6 +9,12 @@ variable app_disk_image {
   default     = "reddit-app"
 }
 variable private_key_path {
-  # Описание переменной
   description = "Path to the private key used for ssh access"
+}
+variable db_internal_ip {
+  description = "Database URL. Specify if other than localhost"
+  default = "localhost"
+}
+variable db_external_ip {
+  description = "Database IP for SSH"
 }

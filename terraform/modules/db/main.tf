@@ -15,6 +15,22 @@ resource "google_compute_instance" "db" {
   metadata = {
     ssh-keys = "appuser:${file(var.public_key_path)}"
   }
+
+  connection {
+    type  = "ssh"
+    host  = self.network_interface[0].access_config[0].nat_ip
+    user  = "appuser"
+    agent = false
+    private_key = file(var.private_key_path)
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "cat /etc/mongod.conf",
+      "sudo sed -i 's/  bindIp.*/  bindIp: 127.0.0.1,${self.network_interface.0.network_ip}/' /etc/mongod.conf",
+      "sudo service mongod restart",
+    ]
+  }
 }
 
 resource "google_compute_firewall" "firewall_mongo" {
