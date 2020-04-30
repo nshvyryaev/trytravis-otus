@@ -8,6 +8,7 @@ module "storage-bucket" {
   source  = "SweetOps/storage-bucket/google"
   version = "0.3.0"
   location = var.region
+  force_destroy = true
 
   name = "storage-bucket-app"
 }
