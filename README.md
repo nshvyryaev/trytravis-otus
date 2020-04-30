@@ -107,3 +107,5 @@ You should use absolute path in module in order to refer files located in module
 `${path.module}` will help.
 Mongodb listens only on localhost by default. To allow external connections you need to add
 DB host internal IP in `bindIp` config variable.
+
+For some reason Travis build has failed... Let's check if it is caused by the code
