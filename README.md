@@ -109,3 +109,10 @@ Mongodb listens only on localhost by default. To allow external connections you 
 DB host internal IP in `bindIp` config variable.
 
 For some reason Travis build has failed... Let's check if it is caused by the code
+
+## HW8 Ansible 1
+Git module doesn't change anything if repo exists. Module makes change if we remove existing folder.
+
+### JSON inventory
+Static JSON inventory file has the same structure as YAML does. Dynamic has hosts configured as names only.
+Each host variables are extracted into separate section `_meta: hostvars`. Dynamic JSON can't be used without a script.
