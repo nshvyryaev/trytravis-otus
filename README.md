@@ -116,3 +116,14 @@ Git module doesn't change anything if repo exists. Module makes change if we rem
 ### JSON inventory
 Static JSON inventory file has the same structure as YAML does. Dynamic has hosts configured as names only.
 Each host variables are extracted into separate section `_meta: hostvars`. Dynamic JSON can't be used without a script.
+
+## HW9 Ansible 2
+* Playbook `reddit_app_one_play.yml` added for DB and APP configuration
+* Playbook `reddit_app_multiple_plays.yml` added. Multiple plays simplify running a bit.
+* Previous playbook is split into `app.yml, db.yml, deploy.yml`. Playbook `site.yml` launches them all.
+* Dynamic inventory created using gcp_compute plugin
+* Packer provisioning is reconfigured with Ansible.
+
+To run Ansible deploy execute `ansible-playbook site.yml` from directory `ansible`.
+
+Note: There was an issue with APT repo key provided in gist for packer_db.yml.
