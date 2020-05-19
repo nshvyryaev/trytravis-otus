@@ -127,3 +127,8 @@ Each host variables are extracted into separate section `_meta: hostvars`. Dynam
 To run Ansible deploy execute `ansible-playbook site.yml` from directory `ansible`.
 
 Note: There was an issue with APT repo key provided in gist for packer_db.yml.
+
+## HW10 Ansible 3
+* Ansible roles added for app and db
+* Both roles are used in playbook `site.yml`
+* Two environments created: stage and prod
