@@ -132,3 +132,5 @@ Note: There was an issue with APT repo key provided in gist for packer_db.yml.
 * Ansible roles added for app and db
 * Both roles are used in playbook `site.yml`
 * Two environments created: stage and prod
+* Community role `jdauphant.nginx` used to configure http port proxy. 9292 firewall rule has been disabled, 80 port is enabled.
+* Playbook users.yml added to create users on app host. Variables are encrypted with Ansible Vault. For SSH config see https://serverpilot.io/docs/how-to-enable-ssh-password-authentication/
